@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./Style.css">
+    <title></title>
+  </head>
+  <body>
+    <h1>Quadratic Solver</h1>
+    <hr>
+
+    <div class="main">
+      <div class="IO">
+        <div class="input">
+          <div class="coinput">
+            <div class="inputlabel">a</div>
+            <input id="i1" oninput="upa(this.value)"></input>
+          </div>
+          <div class="coinput">
+            <div class="inputlabel">b</div>
+            <input id="i2" oninput="upb(this.value)"></input>
+          </div>
+          <div class="coinput">
+            <div class="inputlabel">c</div>
+            <input id="i3" oninput="upc(this.value)"></input>
+          </div>
+          <button class="solve" onclick="solver()"> Solve </button>
+        </div>
+
+        <div class="output">
+          <div class="header">
+            <h1 class="dispeq"><span id="a">ax<sup>2</sup></span> + <span id="b">bx</span> + <span id="c">c</span></h1>
+          </div>
+          <div class="ans">
+            <div class="ansout">
+              <p id="out1"></p>
+            </div>
+            <div class="ansout">
+              <p id="out2"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function solver() {
+        var a = parseFloat(document.getElementById('i1').value)
+        var b = parseFloat(document.getElementById('i2').value)
+        var c = parseFloat(document.getElementById('i3').value)
+
+        var d = (Math.pow(b, 2)) - (4*a*c)
+
+        if (d>0) {
+          var result1 = [(0-b) + Math.sqrt(d)] / (2*a)
+          var result2 = [(0-b) - Math.sqrt(d)] / (2*a)
+
+          document.getElementById('out1').innerHTML = "X = " + Math.round(result1*100)/100;
+          document.getElementById('out2').innerHTML = "X = " +  Math.round(result2*100)/100;
+        }
+
+        if (d=0) {
+          var result1 = [(0-b) + Math.sqrt(d)] / (2*a)
+          document.getElementById('ansout').innerHTML = "X = " + Math.round(result1*100)/100;
+        }
+
+        if (d<0) {
+          var result1 = "Not defined";
+          document.getElementById('ansout').innerHTML = result1;
+        }
+
+      }
+
+      function upa(t) {
+        if (t == 1) {
+          document.getElementById('a').innerHTML = 'x<sup>2</sup>'
+        }
+
+        else if (t == 0) {
+          document.getElementById('a').innerHTML = '0'
+        }
+        else{
+          document.getElementById('a').innerHTML = t + 'x<sup>2</sup>'
+        }
+      }
+      function upb(t) {
+        if (t == 1) {
+          document.getElementById('b').innerHTML = 'x'
+        }
+
+        else if (t == 0) {
+          document.getElementById('b').innerHTML = '0'
+        }
+        else{
+          document.getElementById('b').innerHTML = t + 'x'
+        }
+      }
+      function upc(t) {
+        document.getElementById('c').innerHTML = t
+      }
+    </script>
+  </body>
+</html>
